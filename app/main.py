@@ -1,6 +1,6 @@
 import sys
 import os
-
+import zlib
 
 def main():
     # You can use print statements as follows for debugging, they'll be visible when running tests.
@@ -16,9 +16,16 @@ def main():
         with open(".git/HEAD", "w") as f:
             f.write("ref: refs/heads/master\n")
         print("Initialized git directory")
-    else:
-        raise RuntimeError(f"Unknown command #{command}")
+    elif command == "cat-file":
 
+        option = sys.argv[2]
+        sha_1 = sys.argv[3]
+        sub_dir = sha_1[0:2]
+        check_sum = sha_1[2:]
+    
+        os.chdir(f".git/objects/{sub_dir}")
+        blob = open(f'{check_sum}', 'rb')
+        print(zlib.decompress(blob.read()), end='') 
 
 if __name__ == "__main__":
     main()
