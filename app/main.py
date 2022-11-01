@@ -23,7 +23,11 @@ def main():
     
         os.chdir(f".git/objects/{sub_dir}")
         blob = open(f'{check_sum}', 'rb')
-        print(zlib.decompress(blob.read()).decode("utf-8"), end='') 
+        #print( end='') 
+        bytext = zlib.decompress(blob.read())
+        blob_header_ending_index = bytext.find(b'\x00') 
+        text = bytext[blob_header_ending_index + 1:].decode('utf-8')
+        print(text, end = '')
 
 if __name__ == "__main__":
     main()
