@@ -25,7 +25,7 @@ def main():
     
         os.chdir(f".git/objects/{sub_dir}")
         blob = open(f'{check_sum}', 'rb')
-        print(zlib.decompress(blob.read()), end='') 
+        print(zlib.decompress(blob.read()).decode("utf-8"), end='') 
 
 if __name__ == "__main__":
     main()
