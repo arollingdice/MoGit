@@ -56,7 +56,7 @@ def main():
         os.mkdir(f"{pbHash[:2]}")
         
         os.chdir(f"{pbHash[:2]}")
-        with open(f"pbHash[2:]", "wb") as f:
+        with open(f"{pbHash[2:]}", "wb") as f:
             
             zipped = bytes(zlib.compress(to_hash))
             f.write(zipped)
