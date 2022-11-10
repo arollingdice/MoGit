@@ -97,7 +97,7 @@ def ls_tree(sha_1):
         if item not in folder:
             folder.append(item)
     
-    for obj in folder:
+    for obj in sorted(folder):
         print(obj)
 
 def main():
