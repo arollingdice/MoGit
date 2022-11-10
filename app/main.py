@@ -66,7 +66,7 @@ def ls_tree(sha_1):
 
     hashed = hashed[hashed.find(n) + 1:]
     origin = hashed
-    print(hashed)
+    #print(hashed)
     while(True):
         d_idx = hashed.find(b'40000')
         if(d_idx != -1):
