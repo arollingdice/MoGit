@@ -81,14 +81,14 @@ def ls_tree(sha_1):
         else:
             break
     print(hashed) 
-    while(orgin.find(n) != (len(orgin) - 1)):
-        s_idx = orgin.find(s)
-        n_idx = orgin.find(n)
+    while(origin.find(n) != (len(origin) - 1)):
+        s_idx = origin.find(s)
+        n_idx = origin.find(n)
         #print(file_name)
-        file_name = orgin[s_idx + 1: n_idx].decode('utf-8')
+        file_name = origin[s_idx + 1: n_idx].decode('utf-8')
         if file_name != "":
             reg_file.append(file_name)
-        orgin = orgin[n_idx + 1:]
+        origin = origin[n_idx + 1:]
 
     sorted(folder)
     sorted(reg_file)
