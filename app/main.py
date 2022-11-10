@@ -66,7 +66,7 @@ def ls_tree(sha_1):
 
     hashed = hashed[hashed.find(n) + 1:]
     origin = hashed
-
+    print(hashed)
     while(True):
         d_idx = hashed.find(b'40000')
         if(d_idx != -1):
@@ -80,7 +80,7 @@ def ls_tree(sha_1):
 
         else:
             break
-
+    print(hashed) 
     while(origin.find(n) != (len(origin) - 1)):
         s_idx = origin.find(s)
         n_idx = origin.find(n)
