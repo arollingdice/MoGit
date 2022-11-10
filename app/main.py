@@ -88,7 +88,6 @@ def main():
 
     
     command = sys.argv[1]
-    option = sys.argv[2]
     if command == "init":
         os.mkdir(".git")
         os.mkdir(".git/objects")
@@ -101,11 +100,14 @@ def main():
         cat_file(sys.argv[3])
 
     elif command == "hash-object":
+        option = sys.argv[2]
         hash_object(sys.argv[2], sys.argv[3])    
         
         
         
-    elif command == "ls-tree" and option == "--name-only":
+    elif command == "ls-tree":
+
+        option = sys.argv[2]
         hashed = sys.argv[3]
         ls_tree(hashed)   
 
