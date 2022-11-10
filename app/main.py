@@ -107,7 +107,7 @@ def main():
         
     elif command == "ls-tree" and option == "--name-only":
         hashed = sys.argv[3]
-        ls_tree(hashed):   
+        ls_tree(hashed)   
 
 if __name__ == "__main__":
     main()
