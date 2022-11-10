@@ -80,11 +80,11 @@ def ls_tree(sha_1):
 
         else:
             break
-    print(hashed) 
     while(origin.find(n) != (len(origin) - 1)):
         s_idx = origin.find(s)
         n_idx = origin.find(n)
         #print(file_name)
+        print(origin)
         file_name = origin[s_idx + 1: n_idx].decode('utf-8')
         if file_name != "":
             reg_file.append(file_name)
