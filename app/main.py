@@ -75,7 +75,7 @@ def ls_tree(sha_1):
         else:
             break
     
-    while(hashed.find(n) != (len(hahsed) - 1)):
+    while(hashed.find(n) != (len(hashed) - 1)):
         s_idx = hashed.find(s)
         n_idx = hashed.find(n)
         file_name = hashed[s_idx + 1: n_idx].decode('utf-8')
