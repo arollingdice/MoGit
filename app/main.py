@@ -70,9 +70,9 @@ def ls_tree(sha_1):
         if(d_idx != -1):
             n_idx = hashed.find(n)
             folder_name = hashed[d_idx + 6 : n_idx].decode('utf-8')
-            hashed = hashed[n_idx + 1:]
             if(folder_name != ""):
                 folder.append(folder_name)
+                hashed = hashed[n_idx + 1:]
         else:
             break
     
@@ -80,9 +80,10 @@ def ls_tree(sha_1):
         s_idx = hashed.find(s)
         n_idx = hashed.find(n)
         file_name = hashed[s_idx + 1: n_idx].decode('utf-8')
-        reg_file.append(file_name)
-        hashed = hashed[n_idx + 1:]
-     
+        if file_name != "":
+            reg_file.append(file_name)
+            hashed = hashed[n_idx + 1:]
+
     sorted(folder)
     sorted(reg_file)
     
