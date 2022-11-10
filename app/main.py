@@ -65,12 +65,13 @@ def ls_tree(sha_1):
     reg_file = []
 
     hashed = hashed[hashed.find(n) + 1:]
+    print(hashed)
     while(True):
         d_idx = hashed.find(b'40000')
         if(d_idx != -1):
             n_idx = hashed.find(n)
             folder_name = hashed[d_idx + 6 : n_idx].decode('utf-8')
-            print(folder_name)
+            #print(folder_name)
             if(folder_name != ""):
                 folder.append(folder_name)
 
@@ -78,11 +79,11 @@ def ls_tree(sha_1):
 
         else:
             break
-    
+    print(hashed) 
     while(hashed.find(n) != (len(hashed) - 1)):
         s_idx = hashed.find(s)
         n_idx = hashed.find(n)
-        print(file_name)
+        #print(file_name)
         file_name = hashed[s_idx + 1: n_idx].decode('utf-8')
         if file_name != "":
             reg_file.append(file_name)
