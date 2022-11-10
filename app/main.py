@@ -65,6 +65,7 @@ def ls_tree(sha_1):
     reg_file = []
 
     hashed = hashed[hashed.find(n) + 1:]
+    origin = hashed
     print(hashed)
     while(True):
         d_idx = hashed.find(b'40000')
@@ -80,19 +81,22 @@ def ls_tree(sha_1):
         else:
             break
     print(hashed) 
-    while(hashed.find(n) != (len(hashed) - 1)):
-        s_idx = hashed.find(s)
-        n_idx = hashed.find(n)
+    while(orgin.find(n) != (len(orgin) - 1)):
+        s_idx = orgin.find(s)
+        n_idx = orgin.find(n)
         #print(file_name)
-        file_name = hashed[s_idx + 1: n_idx].decode('utf-8')
+        file_name = orgin[s_idx + 1: n_idx].decode('utf-8')
         if file_name != "":
             reg_file.append(file_name)
-        hashed = hashed[n_idx + 1:]
+        orgin = orgin[n_idx + 1:]
 
     sorted(folder)
     sorted(reg_file)
     
-    folder.extend(reg_file)
+    for item in reg_file:
+        if item not in folder:
+            folder.append(item)
+    
     for obj in folder:
         print(obj)
 
