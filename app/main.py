@@ -47,11 +47,17 @@ def hash_object(option, to_hash_file):
 
     print(pbHash, end='')    
 
-def ls_tree(hashed):
+def ls_tree(sha_1):
     n = b'\x00'
     s = b' '
     
-    blob = open(hashed, 'rb') 
+    sub_dir = sha_1[0:2]
+    check_sum = sha_1[2:]
+
+    os.chdir(f".git/objects/{sub_dir}")
+    blob = open(f'{check_sum}', 'rb')
+
+
     bytext = zlib.decompress(blob.read())
     hashed = bytext + n 
     
