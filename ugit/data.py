@@ -1,4 +1,5 @@
 import os
+import hashlib
 from pathlib import Path
 
 GIT_DIR = Path('.ugit')
@@ -16,3 +17,7 @@ def hash_object(data):
         out.write(data)
 
     return oid
+
+def get_object(oid):
+    with open (OBJECTS_DIR / oid, 'rb') as f:
+        return f.read()
