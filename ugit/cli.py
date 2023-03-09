@@ -3,6 +3,7 @@ import argparse
 import os
 
 from . import data
+from . import base
 
 
 def main():
