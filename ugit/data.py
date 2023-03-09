@@ -1,11 +1,12 @@
 import os
+from pathlib import Path
 
-GIT_DIR = '.ugit'
+GIT_DIR = Path('.ugit')
 OBJECTS_DIR = GIT_DIR / "objects"
 
 def init():
     os.makedirs(GIT_DIR)
-    os.makdirs(OBJECTS_DIR)
+    os.makedirs(OBJECTS_DIR)
 
 def hash_object(data):
     oid = hashlib.sha1(data).hexdigest()
