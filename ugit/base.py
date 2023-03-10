@@ -1,6 +1,11 @@
 import os
+import itertools
+import operator
 from pathlib import Path
-from . import data
+
+from collections import namedtuple
+
+from . import data    
 
 def write_tree (directory='.'):
     entries = []
@@ -104,6 +109,26 @@ def commit(msg):
 
     return oid
 
+
+Commit = namedtuple ('Commit', ['tree', 'parent', 'message'])
+
+
+def get_commit(oid):
+    parent = None
+
+    commit = data.get_object(oid, 'commit').decode()
+    lines = iter(commit.splitlines())
+    for line in itertools.takewhile(operator.truth, lines):
+        key, value = line.split(' ', 1)
+        if key == 'tree':
+            tree = value
+        elif key == 'parent':
+            parent = value
+        else:
+            assert False, f'Unknown field {key}'
+
+    msg = '\n'.join(lines)
+    return Commit(tree=tree, parent=parent, message=msg)
 
 def is_ignored(path):
     return '.ugit' in path.split ('/')

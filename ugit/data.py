@@ -12,7 +12,7 @@ def init():
 
 
 def set_HEAD(oid):
-    with open(f'{GIT_DIR}/HEAD'. 'w') as f:
+    with open(f'{GIT_DIR}/HEAD', 'w') as f:
         f.write(oid)
 
 
@@ -23,8 +23,7 @@ def get_HEAD ():
 
 
 def hash_object(data, type_='blob'):
-    obj = type_.encode() + NULL + dat:w
-    a
+    obj = type_.encode() + NULL + data
     oid = hashlib.sha1(obj).hexdigest()
 
     with open (OBJECTS_DIR / oid, 'wb') as out:
