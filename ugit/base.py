@@ -1,6 +1,7 @@
 import os
 import itertools
 import operator
+import string
 from pathlib import Path
 
 from collections import namedtuple
@@ -123,6 +124,26 @@ def create_tag(name, oid):
 
 
 Commit = namedtuple ('Commit', ['tree', 'parent', 'message'])
+
+
+def get_oid (name):
+    # Name is ref
+    refs_to_try = [
+        f'{name}',
+        f'refs/{name}',
+        f'refs/tags/{name}',
+        f'refs/heads/{name}',
+    ]
+    for ref in refs_to_try:
+        if data.get_ref (ref):
+            return data.get_ref (ref)
+
+    # Name is SHA1
+    is_hex = all (c in string.hexdigits for c in name)
+    if len (name) == 40 and is_hex:
+        return name
+
+    assert False, f'Unknown name {name}'
 
 
 def get_commit(oid):
