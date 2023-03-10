@@ -127,6 +127,8 @@ Commit = namedtuple ('Commit', ['tree', 'parent', 'message'])
 
 
 def get_oid (name):
+    if name == '@': name = 'HEAD'
+
     # Name is ref
     refs_to_try = [
         f'{name}',
