@@ -4,7 +4,7 @@ import operator
 import string
 from pathlib import Path
 
-from collections import namedtuple
+from collections import deque, namedtuple
 
 from . import data    
 
@@ -124,6 +124,22 @@ def create_tag(name, oid):
 
 
 Commit = namedtuple ('Commit', ['tree', 'parent', 'message'])
+
+
+def iter_commits_and_parents(oids):
+    oids = deque(oids)
+    visited = set()
+
+    while oids:
+        oid = oids.popleft()
+        if not oid or oid in visited:
+            continue
+        visited.add(oid)
+        yield oid
+
+        commit = get_commit(oid)
+        # Return parent next
+        oids.appendleft(commit.parent)
 
 
 def get_oid (name):
